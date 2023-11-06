@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
     'pages.apps.PagesConfig',
+
+    # third party
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

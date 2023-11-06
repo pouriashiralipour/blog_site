@@ -1,13 +1,14 @@
 import random
 
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
+from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
-from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
-from django.db.models.signals import pre_save, post_save
+from django.utils.translation import gettext_lazy as _
+from ckeditor.fields import RichTextField
 
 
 class Article(models.Model):
@@ -19,7 +20,7 @@ class Article(models.Model):
     title = models.CharField(max_length=500, verbose_name=_('title'))
     slug = models.SlugField(max_length=500, verbose_name=_('slug'), unique=True, allow_unicode=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
-    description = models.TextField(verbose_name=_('description'))
+    description = RichTextField(verbose_name='description')
     thumbnail = models.ImageField(upload_to='thumbnail/', verbose_name=_('thumbnail'))
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('status'))
     publish = models.DateTimeField(default=timezone.now, verbose_name=_('publish'))
