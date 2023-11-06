@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 11:54+0330\n"
+"POT-Creation-Date: 2023-11-06 22:28+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,58 +17,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-#: .\apps.py:8 .\models.py:32
+
+#: .\apps.py:8 .\models.py:53
 msgid "articles"
 msgstr "مطالب"
 
-#: .\models.py:15
-msgid "Draft"
-msgstr "پیش نویس"
-
-#: .\models.py:16
-msgid "Published"
-msgstr "انتشار"
-
-#: .\models.py:19
+#: .\models.py:15 .\models.py:39
 msgid "title"
 msgstr "عنوان"
 
-#: .\models.py:20
+#: .\models.py:16 .\models.py:40
 msgid "slug"
 msgstr "آدرس"
 
-#: .\models.py:21
-msgid "author"
-msgstr "نویسنده"
-
-#: .\models.py:22
-msgid "description"
-msgstr "توضیحات"
-
-#: .\models.py:23 .\models.py:47
-msgid "thumbnail"
-msgstr "کاور"
-
-#: .\models.py:24
-msgid "status"
-msgstr "وضعیت"
-
-#: .\models.py:25
-msgid "publish"
-msgstr "تاریخ انتشار"
-
-#: .\models.py:26
-msgid "offer_article"
-msgstr "مطلب پیشنهادی"
-
-#: .\models.py:27
+#: .\models.py:17 .\models.py:48
 msgid "datetime_created"
 msgstr "تاریخ ساخت"
 
-#: .\models.py:28
+#: .\models.py:18 .\models.py:49
 msgid "datetime_modified"
 msgstr "تاریخ ویرایش"
 
-#: .\models.py:31
+#: .\models.py:19
+msgid "active"
+msgstr "فعال"
+
+#: .\models.py:22 .\models.py:42
+msgid "category"
+msgstr "دسته بندی"
+
+#: .\models.py:23
+msgid "categories"
+msgstr "دسته بندی ها"
+
+#: .\models.py:35
+msgid "Draft"
+msgstr "پیش نویس"
+
+#: .\models.py:36
+msgid "Published"
+msgstr "انتشار"
+
+#: .\models.py:41
+msgid "author"
+msgstr "نویسنده"
+
+#: .\models.py:44 .\models.py:68
+msgid "thumbnail"
+msgstr "کاور"
+
+#: .\models.py:45
+msgid "status"
+msgstr "وضعیت"
+
+#: .\models.py:46
+msgid "publish"
+msgstr "تاریخ انتشار"
+
+#: .\models.py:47
+msgid "offer_article"
+msgstr "مطلب پیشنهادی"
+
+#: .\models.py:52
 msgid "article"
 msgstr "مطلب"
+
+msgid "description"
+msgstr "توضیحات"

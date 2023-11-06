@@ -11,6 +11,25 @@ from django.utils.translation import gettext_lazy as _
 from ckeditor.fields import RichTextField
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=200, verbose_name=_('title'))
+    slug = models.SlugField(max_length=200, verbose_name=_('slug'), unique=True, allow_unicode=True)
+    datetime_created = models.DateTimeField(default=timezone.now, verbose_name=_('datetime_created'), )
+    datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
+    active = models.BooleanField(default=True, verbose_name=_('active'))
+
+    class Meta:
+        verbose_name = _('category')
+        verbose_name_plural = _("categories")
+        ordering = ['datetime_created']
+
+    # def get_absolute_url(self):
+    #         return reverse('category:category', args=[self.slug])
+
+    def __str__(self):
+        return self.title
+
+
 class Article(models.Model):
     STATUS_CHOICES = (
         ('d', _('Draft')),
@@ -20,6 +39,7 @@ class Article(models.Model):
     title = models.CharField(max_length=500, verbose_name=_('title'))
     slug = models.SlugField(max_length=500, verbose_name=_('slug'), unique=True, allow_unicode=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
+    category = models.ManyToManyField(Category, verbose_name=_('category'), related_name='article')
     description = RichTextField(verbose_name='description')
     thumbnail = models.ImageField(upload_to='thumbnail/', verbose_name=_('thumbnail'))
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('status'))
