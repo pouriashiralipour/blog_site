@@ -20,7 +20,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=500, verbose_name=_('slug'), unique=True, allow_unicode=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
     description = models.TextField(verbose_name=_('description'))
-    # thumbnail = models.ImageField(upload_to='images/', verbose_name=_('thumbnail'))
+    thumbnail = models.ImageField(upload_to='images/', verbose_name=_('thumbnail'))
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('status'))
     publish = models.DateTimeField(default=timezone.now, verbose_name=_('publish'))
     offer_article = models.BooleanField(default=False, verbose_name=_('offer_article'))
