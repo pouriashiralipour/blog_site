@@ -35,8 +35,8 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-    #     return reverse('blog:blog_details_view', args=[self.slug])
+    def get_absolute_url(self):
+        return reverse('articles:details_view', args=[self.slug])
 
     def cover_img(self):
         try:
