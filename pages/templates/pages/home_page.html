@@ -914,9 +914,10 @@
                             </div>
                             <div class="widget-content">
                                 <span class="newsletter-headline text-center mb-3">به 70,000 مشترک ما بپیوندید!</span>
-                                <form>
+                                <form method="post">
+                                    {% csrf_token %}
                                     <div class="mb-2">
-                                        <input class="form-control w-100 text-center"
+                                        <input class="form-control w-100 text-center" name="email"
                                                placeholder="ایمیل خود را بنویسید ..." type="email">
                                     </div>
                                     <button class="btn btn-default btn-full" type="submit">ثبت نام</button>

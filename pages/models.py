@@ -15,3 +15,13 @@ class ContactUsModel(models.Model):
         verbose_name = _('contact_us_form')
         verbose_name_plural = _("contact_us_form")
         ordering = ['datetime_created']
+
+
+class NewsEmailModel(models.Model):
+    email = models.EmailField(verbose_name=_('email'))
+    datetime_created = models.DateTimeField(default=timezone.now, verbose_name=_('datetime_created'), )
+
+    class Meta:
+        verbose_name = _('news_email_form')
+        verbose_name_plural = _("news_email_form")
+        ordering = ['datetime_created']
