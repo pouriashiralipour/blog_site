@@ -176,33 +176,27 @@
                     </div>
                     <!-- comment form -->
                     <div class="comment-form rounded bordered padding-30">
-                        <form action="{% url 'articles:comment_view' article.id %}" method="post">
+                        <form class="comment-form" action="{% url 'articles:comment_view' article.id %}" method="post">
                             {% csrf_token %}
-                            {{ form.as_p }}
-                            <input type="submit" value="send">
-                        </form>
-{#                        <form  id="comment-form"#}
-{#                              class="comment-form" method="post">#}
-{#                            {% csrf_token %}#}
-{#                            <div class="messages"></div>#}
-{#                            <div class="row">#}
-{#                                <div class="column col-md-12">#}
-{#                                    <!-- Comment textarea -->#}
-{#                                    <div class="form-group">#}
-{#                                        <textarea name="text" id="InputComment" class="form-control" rows="4"#}
-{#                                                  placeholder="متن نظر خود را بنویسید ..."#}
-{#                                                  required="required"></textarea>#}
-{#                                    </div>#}
-{#                                </div>#}
-{##}
-{#                                <div class="column col-md-6">#}
-{#                                    <!-- Email input -->#}
-{#                                    <div class="form-group">#}
-{#                                        <input type="email" class="form-control" id="InputEmail" name="InputEmail"#}
-{#                                               placeholder="ایمیل خود را بنویسید" required="required">#}
-{#                                    </div>#}
-{#                                </div>#}
-{##}
+                            <div class="messages"></div>
+                            <div class="row">
+                                <div class="column col-md-12">
+                                    <!-- Comment textarea -->
+                                    <div class="form-group">
+                                        <textarea name="text" id="InputComment" class="form-control" rows="4"
+                                                  placeholder="متن نظر خود را بنویسید ..."
+                                                  required="required"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="column col-md-6">
+                                    <!-- Email input -->
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="InputEmail" name="email"
+                                               placeholder="ایمیل خود را بنویسید" required="required">
+                                    </div>
+                                </div>
+
                                 {#                                <div class="column col-md-6">#}
                                 {#                                    <!-- Name input -->#}
                                 {#                                    <div class="form-group">#}
@@ -210,22 +204,22 @@
                                 {#                                               placeholder="وبسایت خود را وارد کنید" required="required">#}
                                 {#                                    </div>#}
                                 {#                                </div>#}
-{##}
-{#                                <div class="column col-md-12">#}
-{#                                    <!-- Email input -->#}
-{#                                    <div class="form-group">#}
-{#                                        <input type="text" class="form-control" id="InputName" name="name"#}
-{#                                               placeholder="نام خود را بنویسید" required="required">#}
-{#                                    </div>#}
-{#                                </div>#}
-{##}
-{#                            </div>#}
-{##}
-{#                            <button type="submit" class="btn btn-default">#}
-{#                                ارسال پیام#}
-{#                            </button><!-- Submit Button -->#}
-{##}
-{#                        </form>#}
+
+                                <div class="column col-md-12">
+                                    <!-- Email input -->
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="InputName" name="name"
+                                               placeholder="نام خود را بنویسید" required="required">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-default">
+                                ارسال پیام
+                            </button><!-- Submit Button -->
+
+                        </form>
                     </div>
                 </div>
 
