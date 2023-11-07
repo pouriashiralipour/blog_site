@@ -20,9 +20,9 @@ def home_page_view(request):
             new_form = news_form.save(commit=False)
             new_form.save()
     else:
-        news_form = NewsEmailForm()
+        news_form = NewsEmailForm
     context = {'articles': articles,
-               'hottest_article': hottest_article, 'category': category, 'form': news_form}
+               'hottest_article': hottest_article, 'category': category, 'form':news_form}
     return render(request, 'pages/home_page.html', context)
 
 
