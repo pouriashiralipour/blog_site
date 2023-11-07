@@ -5,4 +5,6 @@ from .models import ContactUsModel
 
 @admin.register(ContactUsModel)
 class ArticleAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'topic', 'text']
+    search_fields = ('topic',)
+    ordering = ['-datetime_created']
