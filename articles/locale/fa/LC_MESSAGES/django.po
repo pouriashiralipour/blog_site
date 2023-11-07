@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-07 13:55+0330\n"
+"POT-Creation-Date: 2023-11-07 19:45+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,14 +63,10 @@ msgid "author"
 msgstr "نویسنده"
 
 #: .\models.py:43
-#, fuzzy
-#| msgid "description"
 msgid "description_1"
 msgstr "توضیحات اول"
 
 #: .\models.py:44
-#, fuzzy
-#| msgid "description"
 msgid "description_2"
 msgstr "توضیحات دوم"
 
@@ -106,10 +102,6 @@ msgstr "داغ ترین مطلب"
 msgid "article"
 msgstr "مطلب"
 
-#: .\models.py:80
-msgid "user"
-msgstr "کاربر"
-
 #: .\models.py:81
 msgid "name"
 msgstr "نام"
@@ -134,6 +126,9 @@ msgstr "کامنت"
 msgid "comments"
 msgstr "کامنت ها"
 
-#: .\views.py:32
+#: .\views.py:30
 msgid "Your comment was successfully registered."
 msgstr "کامنت شما با موفقیت ثبت شد ."
+
+#~ msgid "user"
+#~ msgstr "کاربر"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-07 10:00+0330\n"
+"POT-Creation-Date: 2023-11-07 19:46+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "صفحات"
 msgid "name"
 msgstr "نام"
 
-#: .\models.py:9
+#: .\models.py:9 .\models.py:21
 msgid "email"
 msgstr "ایمیل"
 
@@ -38,10 +38,14 @@ msgstr "موضوع"
 msgid "text"
 msgstr "متن"
 
-#: .\models.py:12
+#: .\models.py:12 .\models.py:22
 msgid "datetime_created"
 msgstr "تاریخ ساخت"
 
 #: .\models.py:15 .\models.py:16
 msgid "contact_us_form"
 msgstr "فرم تماس با ما"
+
+#: .\models.py:25 .\models.py:26
+msgid "news_email_form"
+msgstr "ایمیل های خبرنامه"

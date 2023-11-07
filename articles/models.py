@@ -1,6 +1,7 @@
 import random
 
 from django.contrib.auth import get_user_model
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
@@ -45,6 +46,9 @@ class Article(models.Model):
     thumbnail = models.ImageField(upload_to='thumbnail/', verbose_name=_('thumbnail'))
     image_1 = models.ImageField(upload_to='images/', verbose_name=_('image_1'), blank=True, null=True)
     image_2 = models.ImageField(upload_to='images/', verbose_name=_('image_2'), blank=True, null=True)
+    video = models.FileField(upload_to='videos/', null=True, blank=True,
+                             validators=[
+                                 FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('status'))
     publish = models.DateTimeField(default=timezone.now, verbose_name=_('publish'))
     offer_article = models.BooleanField(default=False, verbose_name=_('offer_article'))
