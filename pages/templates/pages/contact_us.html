@@ -74,14 +74,13 @@
 
             <!-- Contact Form -->
             <form id="contact-form" class="contact-form" method="post">
-
+                {% csrf_token %}
                 <div class="messages"></div>
-
                 <div class="row">
                     <div class="column col-md-6">
                         <!-- Name input -->
                         <div class="form-group">
-                            <input type="text" class="form-control" name="InputName" id="InputName"
+                            <input type="text" class="form-control" name="name" id="InputName"
                                    placeholder="نام خود را بنویسید" required="required"
                                    data-error="نوشتن نام الزامی است">
                             <div class="help-block with-errors"></div>
@@ -91,7 +90,7 @@
                     <div class="column col-md-6">
                         <!-- Email input -->
                         <div class="form-group">
-                            <input type="email" class="form-control" id="InputEmail" name="InputEmail"
+                            <input type="email" class="form-control" id="InputEmail" name="email"
                                    placeholder="ایمیل خود را بنویسید" required="required"
                                    data-error="نوشتن ایمیل الزامی است">
                             <div class="help-block with-errors"></div>
@@ -101,7 +100,7 @@
                     <div class="column col-md-12">
                         <!-- Email input -->
                         <div class="form-group">
-                            <input type="text" class="form-control" id="InputSubject" name="InputSubject"
+                            <input type="text" class="form-control" id="InputSubject" name="topic"
                                    placeholder="موضوع خود را وارد بنویسید" required="required"
                                    data-error="نوشتن موضوع الزامی است">
                             <div class="help-block with-errors"></div>
@@ -111,7 +110,7 @@
                     <div class="column col-md-12">
                         <!-- Message textarea -->
                         <div class="form-group">
-                            <textarea name="InputMessage" id="InputMessage" class="form-control" rows="4"
+                            <textarea name="text" id="InputMessage" class="form-control" rows="4"
                                       placeholder="متن پیام خود را بنویسید" required="required"
                                       data-error="نوشتن متن پیام الزامی است"></textarea>
                             <div class="help-block with-errors"></div>
