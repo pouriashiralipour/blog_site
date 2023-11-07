@@ -230,15 +230,17 @@
                     <div class="sidebar">
                         <!-- widget about -->
                         <div class="widget rounded">
-                            <div class="widget-about data-bg-image text-center"
-                                 data-bg-image="{% static 'article/images/map-bg.png' %}">
+                            <div class="widget-about data-bg-image text-center" data-bg-image="images/map-bg.png">
                                 <img src="{% static "article/images/logo.svg" %}" alt="logo" class="mb-4"/>
                                 <p class="mb-4">سلام، ما نویسنده محتوا هستیم که مجذوب مطالب مد روز، سلبریتی و سبک زندگی
                                     هستیم. ما به مشتریان کمک می کنیم محتوای مناسب را برای افراد مناسب ارائه دهند.</p>
                                 <ul class="social-icons list-unstyled list-inline mb-0">
-                                    <li class="list-inline-item"><a href=""><i class="fab fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href=""><i class="fab fa-telegram"></i></a></li>
-                                    <li class="list-inline-item"><a href=""><i class="fab fa-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -247,7 +249,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">مطالب محبوب</h3>
-                                <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <!-- post -->
@@ -256,8 +258,7 @@
                                         <span class="number">1</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-1.jpg" %}"
-                                                     alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-1.jpg"%}" alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -275,8 +276,7 @@
                                         <span class="number">2</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-2.jpg" %}"
-                                                     alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-2.jpg"%}" alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -294,8 +294,7 @@
                                         <span class="number">3</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-3.jpg" %}"
-                                                     alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-3.jpg"%}" alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -314,45 +313,32 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">کاوش موضوعات</h3>
-                                <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <ul class="list">
-                                    <li><a href="#">سبک زندگی</a><span>(5)</span></li>
-                                    <li><a href="#">الهام بخش</a><span>(2)</span></li>
-                                    <li><a href="#">مد روز</a><span>(4)</span></li>
-                                    <li><a href="#">سیاست</a><span>(1)</span></li>
-                                    <li><a href="#">پرطرفدار</a><span>(7)</span></li>
-                                    <li><a href="#">فرهنگ</a><span>(3)</span></li>
+                                    {% for cat in category.all %}
+                                        <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
+
+                                        <span>({{ cat.article.all|length }})</span>
+
+
+                                    {% endfor %}
+
+
                                 </ul>
                             </div>
 
                         </div>
 
                         <!-- widget newsletter -->
-                        <div class="widget rounded">
-                            <div class="widget-header text-center">
-                                <h3 class="widget-title">خبرنامه</h3>
-                                <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
-                            </div>
-                            <div class="widget-content">
-                                <span class="newsletter-headline text-center mb-3">به 70,000 مشترک ما بپیوندید!</span>
-                                <form>
-                                    <div class="mb-2">
-                                        <input class="form-control w-100 text-center"
-                                               placeholder="ایمیل خود را بنویسید ..." type="email">
-                                    </div>
-                                    <button class="btn btn-default btn-full" type="submit">ثبت نام</button>
-                                </form>
-                                <span class="newsletter-privacy text-center mt-3">با ثبت نام، با <a href="#">سیاست حفظ حریم خصوصی ما</a> موافقت می کنید</span>
-                            </div>
-                        </div>
+
 
                         <!-- widget post carousel -->
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">جشن</h3>
-                                <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <div class="post-carousel-widget">
@@ -362,8 +348,7 @@
                                             <a href="category.html" class="category-badge position-absolute">چگونه</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}"
-                                                         alt="post-title"/>
+                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}" alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>
@@ -381,8 +366,7 @@
                                                class="category-badge position-absolute">پرطرفدار</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="{% static "article/images/widgets/widget-carousel-2.jpg" %}"
-                                                         alt="post-title"/>
+                                                    <img src="{% static "article/images/widgets/widget-carousel-2.jpg" %}" alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>
@@ -399,8 +383,7 @@
                                             <a href="category.html" class="category-badge position-absolute">چگونه</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}"
-                                                         alt="post-title"/>
+                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}" alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>
@@ -428,7 +411,7 @@
                         <div class="widget no-container rounded text-md-center">
                             <span class="ads-title">- تبلیغات -</span>
                             <a href="#" class="widget-ads">
-                                <img src="{% static 'article/images/ads/ad-360.png' %}" alt="Advertisement"/>
+                                <img src="{% static "article/images/ads/ad-360.png" %}" alt="Advertisement"/>
                             </a>
                         </div>
 
@@ -436,7 +419,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">برچسب ها</h3>
-                                <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <a href="#" class="tag">#پرطرفدار</a>

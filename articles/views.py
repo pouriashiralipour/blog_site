@@ -43,7 +43,7 @@ class CommentsCreateView(SuccessMessageMixin, generic.CreateView):
 class CategoryListView(generic.DetailView):
     template_name = 'articles/category.html'
     model = Category
-    context_object_name = 'category'
+    context_object_name = 'cat'
 
 
 def category_detail_view(request, slug):

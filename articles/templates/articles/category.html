@@ -11,11 +11,11 @@
     <section class="page-header">
         <div class="container-xl">
             <div class="text-center">
-                <h1 class="mt-0 mb-2">{{ category.title }}</h1>
+                <h1 class="mt-0 mb-2">{{ cat.title }}</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center mb-0">
                         <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">صفحه اصلی</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ category.title }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ cat.title }}</li>
                     </ol>
                 </nav>
             </div>
@@ -30,57 +30,59 @@
 
                 <div class="col-lg-8">
                     <div class="row gy-4">
-                        {% for article in category.article.all  %}
-                        	<div class="col-sm-6">
-                            <!-- post -->
-                            <div class="post post-grid rounded bordered">
-                                <div class="thumb top-rounded">
-                                    <a href="{{ category.get_absolute_url }}" class="category-badge position-absolute">{{ category.title }}</a>
-                                    <span class="post-format">
+                        {% for article in cat.article.all %}
+                            <div class="col-sm-6">
+                                <!-- post -->
+                                <div class="post post-grid rounded bordered">
+                                    <div class="thumb top-rounded">
+                                        <a href="{{ cat.get_absolute_url }}"
+                                           class="category-badge position-absolute">{{ cat.title }}</a>
+                                        <span class="post-format">
                                         <i class="icon-picture"></i>
                                     </span>
-                                    <a href="{{ article.get_absolute_url }}">
-                                        <div class="inner">
-                                            <img src="{{ article.thumbnail.url }}" alt="post-title"/>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="details">
-                                    <ul class="meta list-inline mb-0">
-                                        <li class="list-inline-item"><a href="#"><img
-                                                src="{% static 'article/images/other/author-sm.png' %}"
-                                                class="author" alt="author"/>{{ article.author }}</a>
-                                        </li>
-                                        <li class="list-inline-item">{{ article.publish }}</li>
-                                    </ul>
-                                    <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ article.title }}</a></h5>
-                                    <p class="excerpt mb-0">{{ article.description_1|safe }}</p>
-                                </div>
-                                <div class="post-bottom clearfix d-flex align-items-center">
-                                    <div class="social-share me-auto">
-                                        <button class="toggle-button icon-share"></button>
-                                        <ul class="icons list-unstyled list-inline mb-0">
-                                            <li class="list-inline-item"><a href="#"><i
-                                                    class="fab fa-facebook-f"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="list-inline-item"><a href="#"><i
-                                                    class="fab fa-linkedin-in"></i></a>
-                                            </li>
-                                            <li class="list-inline-item"><a href="#"><i
-                                                    class="fab fa-pinterest"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i
-                                                    class="fab fa-telegram-plane"></i></a></li>
-                                            <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a>
-                                            </li>
-                                        </ul>
+                                        <a href="{{ article.get_absolute_url }}">
+                                            <div class="inner">
+                                                <img src="{{ article.thumbnail.url }}" alt="post-title"/>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="more-button float-end">
-                                        <a href="blog-single.html"><span class="icon-options"></span></a>
+                                    <div class="details">
+                                        <ul class="meta list-inline mb-0">
+                                            <li class="list-inline-item"><a href="#"><img
+                                                    src="{% static 'article/images/other/author-sm.png' %}"
+                                                    class="author" alt="author"/>{{ article.author }}</a>
+                                            </li>
+                                            <li class="list-inline-item">{{ article.publish }}</li>
+                                        </ul>
+                                        <h5 class="post-title mb-3 mt-3"><a
+                                                href="blog-single.html">{{ article.title }}</a></h5>
+                                        <p class="excerpt mb-0">{{ article.description_1|safe|linebreaks|truncatewords_html:15 }}</p>
+                                    </div>
+                                    <div class="post-bottom clearfix d-flex align-items-center">
+                                        <div class="social-share me-auto">
+                                            <button class="toggle-button icon-share"></button>
+                                            <ul class="icons list-unstyled list-inline mb-0">
+                                                <li class="list-inline-item"><a href="#"><i
+                                                        class="fab fa-facebook-f"></i></a></li>
+                                                <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a>
+                                                </li>
+                                                <li class="list-inline-item"><a href="#"><i
+                                                        class="fab fa-linkedin-in"></i></a>
+                                                </li>
+                                                <li class="list-inline-item"><a href="#"><i
+                                                        class="fab fa-pinterest"></i></a></li>
+                                                <li class="list-inline-item"><a href="#"><i
+                                                        class="fab fa-telegram-plane"></i></a></li>
+                                                <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="more-button float-end">
+                                            <a href="blog-single.html"><span class="icon-options"></span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         {% endfor %}
 
                     </div>
@@ -103,19 +105,14 @@
                         <!-- widget about -->
                         <div class="widget rounded">
                             <div class="widget-about data-bg-image text-center" data-bg-image="images/map-bg.png">
-                                <img src="images/logo.svg" alt="logo" class="mb-4"/>
-                                <p class="mb-4">سلام، ما نویسنده محتوا هستیم که مجذوب مطالب مد روز، سلبریتی و سبک
-                                    زندگی
-                                    هستیم. ما به مشتریان کمک می کنیم محتوای مناسب را برای افراد مناسب ارائه
-                                    دهند.</p>
+                                <img src="{% static "article/images/logo.svg" %}" alt="logo" class="mb-4"/>
+                                <p class="mb-4">سلام، ما نویسنده محتوا هستیم که مجذوب مطالب مد روز، سلبریتی و سبک زندگی
+                                    هستیم. ما به مشتریان کمک می کنیم محتوای مناسب را برای افراد مناسب ارائه دهند.</p>
                                 <ul class="social-icons list-unstyled list-inline mb-0">
-                                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    </li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                     <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a>
-                                    </li>
-                                    <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a>
-                                    </li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
                                     <li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
                                     <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
@@ -126,7 +123,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">مطالب محبوب</h3>
-                                <img src="images/wave.svg" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <!-- post -->
@@ -135,13 +132,13 @@
                                         <span class="number">1</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="images/posts/tabs-1.jpg" alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-1.jpg" %}"
+                                                     alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">3 راه آسان برای
-                                            سریعتر
+                                        <h6 class="post-title my-0"><a href="blog-single.html">3 راه آسان برای سریعتر
                                             کردن آیفون</a></h6>
                                         <ul class="meta list-inline mt-1 mb-0">
                                             <li class="list-inline-item">30 اردیبهشت 1401</li>
@@ -154,13 +151,13 @@
                                         <span class="number">2</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="images/posts/tabs-2.jpg" alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-2.jpg" %}"
+                                                     alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">یک روش فوق العاده
-                                            آسان که
+                                        <h6 class="post-title my-0"><a href="blog-single.html">یک روش فوق العاده آسان که
                                             برای همه کار می کند</a></h6>
                                         <ul class="meta list-inline mt-1 mb-0">
                                             <li class="list-inline-item">30 اردیبهشت 1401</li>
@@ -173,7 +170,8 @@
                                         <span class="number">3</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="images/posts/tabs-3.jpg" alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-3.jpg" %}"
+                                                     alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -192,56 +190,36 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">کاوش موضوعات</h3>
-                                <img src="images/wave.svg" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <ul class="list">
-                                    <li><a href="#">سبک زندگی</a><span>(5)</span></li>
-                                    <li><a href="#">الهام بخش</a><span>(2)</span></li>
-                                    <li><a href="#">مد روز</a><span>(4)</span></li>
-                                    <li><a href="#">سیاست</a><span>(1)</span></li>
-                                    <li><a href="#">پرطرفدار</a><span>(7)</span></li>
-                                    <li><a href="#">فرهنگ</a><span>(3)</span></li>
+                                    {% for cat in category.all %}
+                                        <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
+                                        <span>({{ cat.article.all|length }})</span>
+                                    {% endfor %}
                                 </ul>
                             </div>
 
                         </div>
-
                         <!-- widget newsletter -->
-                        <div class="widget rounded">
-                            <div class="widget-header text-center">
-                                <h3 class="widget-title">خبرنامه</h3>
-                                <img src="images/wave.svg" class="wave" alt="wave"/>
-                            </div>
-                            <div class="widget-content">
-                                <span class="newsletter-headline text-center mb-3">به 70,000 مشترک ما بپیوندید!</span>
-                                <form>
-                                    <div class="mb-2">
-                                        <input class="form-control w-100 text-center"
-                                               placeholder="ایمیل خود را بنویسید ..." type="email">
-                                    </div>
-                                    <button class="btn btn-default btn-full" type="submit">ثبت نام</button>
-                                </form>
-                                <span class="newsletter-privacy text-center mt-3">با ثبت نام، با <a href="#">سیاست حفظ حریم خصوصی ما</a> موافقت می کنید</span>
-                            </div>
-                        </div>
+
 
                         <!-- widget post carousel -->
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">جشن</h3>
-                                <img src="images/wave.svg" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <div class="post-carousel-widget">
                                     <!-- post -->
                                     <div class="post post-carousel">
                                         <div class="thumb rounded">
-                                            <a href="category.html"
-                                               class="category-badge position-absolute">چگونه</a>
+                                            <a href="category.html" class="category-badge position-absolute">چگونه</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="images/widgets/widget-carousel-1.jpg"
+                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}"
                                                          alt="post-title"/>
                                                 </div>
                                             </a>
@@ -260,13 +238,12 @@
                                                class="category-badge position-absolute">پرطرفدار</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="images/widgets/widget-carousel-2.jpg"
+                                                    <img src="{% static "article/images/widgets/widget-carousel-2.jpg" %}"
                                                          alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>
-                                        <h5 class="post-title mb-0 mt-4"><a href="blog-single.html">با این 7 نکته بر
-                                            هنر
+                                        <h5 class="post-title mb-0 mt-4"><a href="blog-single.html">با این 7 نکته بر هنر
                                             طبیعت مسلط شوید</a></h5>
                                         <ul class="meta list-inline mt-2 mb-0">
                                             <li class="list-inline-item"><a href="#">کاتن</a></li>
@@ -276,11 +253,10 @@
                                     <!-- post -->
                                     <div class="post post-carousel">
                                         <div class="thumb rounded">
-                                            <a href="category.html"
-                                               class="category-badge position-absolute">چگونه</a>
+                                            <a href="category.html" class="category-badge position-absolute">چگونه</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="images/widgets/widget-carousel-1.jpg"
+                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}"
                                                          alt="post-title"/>
                                                 </div>
                                             </a>
@@ -309,7 +285,7 @@
                         <div class="widget no-container rounded text-md-center">
                             <span class="ads-title">- تبلیغات -</span>
                             <a href="#" class="widget-ads">
-                                <img src="images/ads/ad-360.png" alt="Advertisement"/>
+                                <img src="{% static "article/images/ads/ad-360.png" %}" alt="Advertisement"/>
                             </a>
                         </div>
 
@@ -317,7 +293,7 @@
                         <div class="widget rounded">
                             <div class="widget-header text-center">
                                 <h3 class="widget-title">برچسب ها</h3>
-                                <img src="images/wave.svg" class="wave" alt="wave"/>
+                                <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
                                 <a href="#" class="tag">#پرطرفدار</a>
