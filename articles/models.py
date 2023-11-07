@@ -45,6 +45,7 @@ class Article(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name=_('status'))
     publish = models.DateTimeField(default=timezone.now, verbose_name=_('publish'))
     offer_article = models.BooleanField(default=False, verbose_name=_('offer_article'))
+    hottest_article = models.BooleanField(default=False, verbose_name=_('hottest_article'), blank=True)
     datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('datetime_created'))
     datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
 

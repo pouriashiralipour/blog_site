@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 22:28+0330\n"
+"POT-Creation-Date: 2023-11-07 11:28+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\apps.py:8 .\models.py:53
+#: .\apps.py:8 .\models.py:54
 msgid "articles"
 msgstr "مطالب"
 
@@ -30,11 +30,11 @@ msgstr "عنوان"
 msgid "slug"
 msgstr "آدرس"
 
-#: .\models.py:17 .\models.py:48
+#: .\models.py:17 .\models.py:49
 msgid "datetime_created"
 msgstr "تاریخ ساخت"
 
-#: .\models.py:18 .\models.py:49
+#: .\models.py:18 .\models.py:50
 msgid "datetime_modified"
 msgstr "تاریخ ویرایش"
 
@@ -62,7 +62,7 @@ msgstr "انتشار"
 msgid "author"
 msgstr "نویسنده"
 
-#: .\models.py:44 .\models.py:68
+#: .\models.py:44 .\models.py:69
 msgid "thumbnail"
 msgstr "کاور"
 
@@ -78,9 +78,13 @@ msgstr "تاریخ انتشار"
 msgid "offer_article"
 msgstr "مطلب پیشنهادی"
 
-#: .\models.py:52
+#: .\models.py:48
+msgid "hottest_article"
+msgstr "داغ ترین مطلب"
+
+#: .\models.py:53
 msgid "article"
 msgstr "مطلب"
 
-msgid "description"
-msgstr "توضیحات"
+#~ msgid "description"
+#~ msgstr "توضیحات"

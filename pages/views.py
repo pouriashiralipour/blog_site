@@ -3,10 +3,19 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView
 
 from .models import ContactUsModel
+from articles.models import Article
 
 
-class HomePageView(TemplateView):
-    template_name = 'pages/home_page.html'
+# class HomePageView(TemplateView):
+#     template_name = 'pages/home_page.html'
+def home_page_view(request):
+    # offer_article = Article.objects.filter(status='p', offer_article=True).order_by('-publish')[1:]
+    # last_offer_article = Article.objects.filter(status='p', offer_article=True).order_by('-publish')[:1]
+    hottest_article = Article.objects.filter(status='p').order_by('-publish')[:1]
+    articles = Article.objects.filter(status='p').order_by('-publish')
+    context = {'articles': articles,
+               'hottest_article': hottest_article}
+    return render(request, 'pages/home_page.html', context)
 
 
 class AboutUsView(TemplateView):
