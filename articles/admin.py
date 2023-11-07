@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Article, Category
+from .models import Article, Category, Comments
 
 
 @admin.register(Article)
@@ -13,9 +13,17 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleCategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'active', 'datetime_created']
     list_filter = ('active',)
     search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}
+    ordering = ['-datetime_created']
+
+
+@admin.register(Comments)
+class ArticleCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'is_active', 'text']
+    list_filter = ('is_active',)
+    search_fields = ('text',)
     ordering = ['-datetime_created']

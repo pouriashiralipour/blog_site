@@ -204,16 +204,14 @@
                     <!-- comment form -->
                     <div class="comment-form rounded bordered padding-30">
 
-                        <form id="comment-form" class="comment-form" method="post">
-
+                        <form action="{% url 'articles:details_view' article.slug %}" id="comment-form" class="comment-form" method="post">
+                            {% csrf_token %}
                             <div class="messages"></div>
-
                             <div class="row">
-
                                 <div class="column col-md-12">
                                     <!-- Comment textarea -->
                                     <div class="form-group">
-                                        <textarea name="InputComment" id="InputComment" class="form-control" rows="4"
+                                        <textarea name="text" id="InputComment" class="form-control" rows="4"
                                                   placeholder="متن نظر خود را بنویسید ..."
                                                   required="required"></textarea>
                                     </div>
@@ -227,25 +225,25 @@
                                     </div>
                                 </div>
 
-                                <div class="column col-md-6">
-                                    <!-- Name input -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="InputWeb" id="InputWeb"
-                                               placeholder="وبسایت خود را وارد کنید" required="required">
-                                    </div>
-                                </div>
+{#                                <div class="column col-md-6">#}
+{#                                    <!-- Name input -->#}
+{#                                    <div class="form-group">#}
+{#                                        <input type="text" class="form-control" name="InputWeb" id="InputWeb"#}
+{#                                               placeholder="وبسایت خود را وارد کنید" required="required">#}
+{#                                    </div>#}
+{#                                </div>#}
 
                                 <div class="column col-md-12">
                                     <!-- Email input -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="InputName" name="InputName"
+                                        <input type="text" class="form-control" id="InputName" name="name"
                                                placeholder="نام خود را بنویسید" required="required">
                                     </div>
                                 </div>
 
                             </div>
 
-                            <button type="submit" name="submit" id="submit" value="submit" class="btn btn-default">
+                            <button type="submit"  class="btn btn-default">
                                 ارسال پیام
                             </button><!-- Submit Button -->
 

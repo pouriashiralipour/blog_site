@@ -77,8 +77,8 @@ class Article(models.Model):
 
 class Comments(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments',
-                             verbose_name=_('user'))
-    name = models.CharField(max_length=200, verbose_name=_('name'), related_name='comments')
+                             verbose_name=_('user'), blank=True, null=True)
+    name = models.CharField(max_length=200, verbose_name=_('name'))
     email = models.EmailField(verbose_name=_('email'))
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name=_('article'))
     text = models.TextField(verbose_name=_('text'))
