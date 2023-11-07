@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %}
     تماس با ما
@@ -68,7 +69,7 @@
             <!-- section header -->
             <div class="section-header">
                 <h3 class="section-title">ارسال پیام</h3>
-                <img src="images/wave.svg" class="wave" alt="wave"/>
+                <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
             </div>
 
             <!-- Contact Form -->
