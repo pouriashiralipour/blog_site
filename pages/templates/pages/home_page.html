@@ -17,11 +17,12 @@
 
                     <!-- featured post large -->
                     {% for article in hottest_article %}
-                    	<div class="post featured-post-lg">
+                        <div class="post featured-post-lg">
                         <div class="details clearfix">
-                            <a href="category.html" class="category-badge">{% for cat in article.category.all %}
-                            	{{ cat.title }}
-                            {% endfor %}
+                                {% for cat in article.category.all %}
+                                    <a href="{{ cat.get_absolute_url }}" class="category-badge">
+                                    {{ cat.title }}
+                                {% endfor %}
                             </a>
                             <h2 class="post-title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
                             <ul class="meta list-inline mb-0">
@@ -892,12 +893,14 @@
                             </div>
                             <div class="widget-content">
                                 <ul class="list">
-                                    <li><a href="#">سبک زندگی</a><span>(5)</span></li>
-                                    <li><a href="#">الهام بخش</a><span>(2)</span></li>
-                                    <li><a href="#">مد روز</a><span>(4)</span></li>
-                                    <li><a href="#">سیاست</a><span>(1)</span></li>
-                                    <li><a href="#">پرطرفدار</a><span>(7)</span></li>
-                                    <li><a href="#">فرهنگ</a><span>(3)</span></li>
+                                    {% for cat in category %}
+                                        <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>{% if cat.article.all %}
+                                        	<span>({{ cat.article.all|length }})</span>
+                                        {% endif %} </li>
+
+                                    {% endfor %}
+
+
                                 </ul>
                             </div>
 

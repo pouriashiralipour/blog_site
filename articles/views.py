@@ -40,7 +40,17 @@ class CommentsCreateView(SuccessMessageMixin, generic.CreateView):
         return super().form_valid(form)
 
 
-class CategoryListView(generic.ListView):
+class CategoryListView(generic.DetailView):
     template_name = 'articles/category.html'
     model = Category
     context_object_name = 'category'
+
+
+def category_detail_view(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    articles = Article.objects.filter(status='p').order_by('-publish')
+    context = {
+        'category': category,
+        'articles': articles,
+    }
+    return render(request, 'articles/category.html', context)

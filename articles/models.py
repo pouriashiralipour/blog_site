@@ -24,7 +24,7 @@ class Category(models.Model):
         ordering = ['datetime_created']
 
     def get_absolute_url(self):
-            return reverse('articles:category_view', args=[self.slug])
+        return reverse('articles:category_list_view', args=[self.slug])
 
     def __str__(self):
         return self.title

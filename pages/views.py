@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView
 
 from .models import ContactUsModel
-from articles.models import Article
+from articles.models import Article, Category
 
 
 # class HomePageView(TemplateView):
@@ -13,8 +13,9 @@ def home_page_view(request):
     # last_offer_article = Article.objects.filter(status='p', offer_article=True).order_by('-publish')[:1]
     hottest_article = Article.objects.filter(status='p').order_by('-publish')[:1]
     articles = Article.objects.filter(status='p').order_by('-publish')
+    category = Category.objects.filter(active=True).order_by('-datetime_created')
     context = {'articles': articles,
-               'hottest_article': hottest_article}
+               'hottest_article': hottest_article, 'category': category}
     return render(request, 'pages/home_page.html', context)
 
 
