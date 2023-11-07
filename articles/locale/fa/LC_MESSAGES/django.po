@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-07 11:53+0330\n"
+"POT-Creation-Date: 2023-11-07 13:55+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,11 @@ msgstr "عنوان"
 msgid "slug"
 msgstr "آدرس"
 
-#: .\models.py:17 .\models.py:52
+#: .\models.py:17 .\models.py:52 .\models.py:86
 msgid "datetime_created"
 msgstr "تاریخ ساخت"
 
-#: .\models.py:18 .\models.py:53
+#: .\models.py:18 .\models.py:53 .\models.py:87
 msgid "datetime_modified"
 msgstr "تاریخ ویرایش"
 
@@ -102,6 +102,38 @@ msgstr "مطلب پیشنهادی"
 msgid "hottest_article"
 msgstr "داغ ترین مطلب"
 
-#: .\models.py:56
+#: .\models.py:56 .\models.py:83
 msgid "article"
 msgstr "مطلب"
+
+#: .\models.py:80
+msgid "user"
+msgstr "کاربر"
+
+#: .\models.py:81
+msgid "name"
+msgstr "نام"
+
+#: .\models.py:82
+msgid "email"
+msgstr "ایمیل"
+
+#: .\models.py:84
+msgid "text"
+msgstr "متن"
+
+#: .\models.py:85
+msgid "is_active"
+msgstr "فعال"
+
+#: .\models.py:90
+msgid "comment"
+msgstr "کامنت"
+
+#: .\models.py:91
+msgid "comments"
+msgstr "کامنت ها"
+
+#: .\views.py:32
+msgid "Your comment was successfully registered."
+msgstr "کامنت شما با موفقیت ثبت شد ."
