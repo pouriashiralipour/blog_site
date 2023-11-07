@@ -76,8 +76,8 @@ class Article(models.Model):
 
 
 class Comments(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments',
-                             verbose_name=_('user'), blank=True, null=True)
+    # user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments',
+    #                          verbose_name=_('user'), blank=True, null=True)
     name = models.CharField(max_length=200, verbose_name=_('name'))
     email = models.EmailField(verbose_name=_('email'))
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name=_('article'))
@@ -90,6 +90,9 @@ class Comments(models.Model):
         verbose_name = _('comment')
         verbose_name_plural = _('comments')
         ordering = ['-datetime_created']
+
+    def get_absolute_url(self):
+        return reverse('articles:details_view', args=[self.article.slug])
 
 
 def slugify_instance_title(instance, save=False, new_slug=None):

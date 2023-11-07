@@ -4,8 +4,6 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext, gettext_lazy as _
 
-
-
 from .models import Article, Comments
 from .forms import CommentForm
 
@@ -33,7 +31,7 @@ class CommentsCreateView(SuccessMessageMixin, generic.CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
-        obj.user = self.request.user
+        # obj.user = self.request.user
 
         article_id = int(self.kwargs['article_id'])
         article = get_object_or_404(Article, id=article_id)

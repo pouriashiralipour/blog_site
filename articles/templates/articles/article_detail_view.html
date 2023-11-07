@@ -19,7 +19,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">صفحه اصلی</a></li>
                             <li class="breadcrumb-item"><a href="#">{% for cat in article.category.all %}
-                            	{{ cat.title }}
+                                {{ cat.title }}
                             {% endfor %}
                             </a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ article.title }}
@@ -139,7 +139,7 @@
 
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">نظر (3)</h3>
+                        <h3 class="section-title">نظر ({{ article.comments.all|length }})</h3>
                         <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
                     </div>
                     <!-- post comments -->
@@ -147,50 +147,23 @@
 
                         <ul class="comments">
                             <!-- comment item -->
-                            <li class="comment rounded">
-                                <div class="thumb">
-                                    <img src="{% static "article/images/other/comment-1.png" %}" alt="John Doe"/>
-                                </div>
-                                <div class="details">
-                                    <h4 class="name"><a href="#">جان دو</a></h4>
-                                    <span class="date">01 خرداد 1401 - 14:45</span>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                        گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
-                                        است</p>
-                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>
-                                </div>
-                            </li>
+                            {% for comment in article.comments.all %}
+                                <li class="comment rounded">
+                                    <div class="thumb">
+                                        <img src="{% static "article/images/other/comment-1.png" %}"
+                                             alt="{{ comment.name }}"/>
+                                    </div>
+                                    <div class="details">
+                                        <h4 class="name"><a href="#">{{ comment.name }}</a></h4>
+                                        <span class="date">{{ comment.datetime_created }}</span>
+                                        <p>{{ comment.text }}</p>
+                                        {#                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>#}
+                                    </div>
+                                </li>
+                            {% endfor %}
+
                             <!-- comment item -->
-                            <li class="comment child rounded">
-                                <div class="thumb">
-                                    <img src="{% static "article/images/other/comment-2.png" %}" alt="John Doe"/>
-                                </div>
-                                <div class="details">
-                                    <h4 class="name"><a href="#">هلن دو</a></h4>
-                                    <span class="date">01 خرداد 1401 - 14:45</span>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                        گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                        برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                                        کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان
-                                        جامعه و متخصصان را می طلبد</p>
-                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>
-                                </div>
-                            </li>
-                            <!-- comment item -->
-                            <li class="comment rounded">
-                                <div class="thumb">
-                                    <img src="{% static "article/images/other/comment-3.png" %}" alt="John Doe"/>
-                                </div>
-                                <div class="details">
-                                    <h4 class="name"><a href="#">آنا دو</a></h4>
-                                    <span class="date">01 خرداد 1401 - 14:45</span>
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                        گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                        برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                                        کاربردی می باشد</p>
-                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
 
@@ -203,51 +176,56 @@
                     </div>
                     <!-- comment form -->
                     <div class="comment-form rounded bordered padding-30">
-
-                        <form action="{% url 'articles:details_view' article.slug %}" id="comment-form" class="comment-form" method="post">
+                        <form action="{% url 'articles:comment_view' article.id %}" method="post">
                             {% csrf_token %}
-                            <div class="messages"></div>
-                            <div class="row">
-                                <div class="column col-md-12">
-                                    <!-- Comment textarea -->
-                                    <div class="form-group">
-                                        <textarea name="text" id="InputComment" class="form-control" rows="4"
-                                                  placeholder="متن نظر خود را بنویسید ..."
-                                                  required="required"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="column col-md-6">
-                                    <!-- Email input -->
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="InputEmail" name="InputEmail"
-                                               placeholder="ایمیل خود را بنویسید" required="required">
-                                    </div>
-                                </div>
-
-{#                                <div class="column col-md-6">#}
-{#                                    <!-- Name input -->#}
+                            {{ form.as_p }}
+                            <input type="submit" value="send">
+                        </form>
+{#                        <form  id="comment-form"#}
+{#                              class="comment-form" method="post">#}
+{#                            {% csrf_token %}#}
+{#                            <div class="messages"></div>#}
+{#                            <div class="row">#}
+{#                                <div class="column col-md-12">#}
+{#                                    <!-- Comment textarea -->#}
 {#                                    <div class="form-group">#}
-{#                                        <input type="text" class="form-control" name="InputWeb" id="InputWeb"#}
-{#                                               placeholder="وبسایت خود را وارد کنید" required="required">#}
+{#                                        <textarea name="text" id="InputComment" class="form-control" rows="4"#}
+{#                                                  placeholder="متن نظر خود را بنویسید ..."#}
+{#                                                  required="required"></textarea>#}
 {#                                    </div>#}
 {#                                </div>#}
-
-                                <div class="column col-md-12">
-                                    <!-- Email input -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="InputName" name="name"
-                                               placeholder="نام خود را بنویسید" required="required">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button type="submit"  class="btn btn-default">
-                                ارسال پیام
-                            </button><!-- Submit Button -->
-
-                        </form>
+{##}
+{#                                <div class="column col-md-6">#}
+{#                                    <!-- Email input -->#}
+{#                                    <div class="form-group">#}
+{#                                        <input type="email" class="form-control" id="InputEmail" name="InputEmail"#}
+{#                                               placeholder="ایمیل خود را بنویسید" required="required">#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+                                {#                                <div class="column col-md-6">#}
+                                {#                                    <!-- Name input -->#}
+                                {#                                    <div class="form-group">#}
+                                {#                                        <input type="text" class="form-control" name="InputWeb" id="InputWeb"#}
+                                {#                                               placeholder="وبسایت خود را وارد کنید" required="required">#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+{##}
+{#                                <div class="column col-md-12">#}
+{#                                    <!-- Email input -->#}
+{#                                    <div class="form-group">#}
+{#                                        <input type="text" class="form-control" id="InputName" name="name"#}
+{#                                               placeholder="نام خود را بنویسید" required="required">#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{##}
+{#                            <button type="submit" class="btn btn-default">#}
+{#                                ارسال پیام#}
+{#                            </button><!-- Submit Button -->#}
+{##}
+{#                        </form>#}
                     </div>
                 </div>
 
