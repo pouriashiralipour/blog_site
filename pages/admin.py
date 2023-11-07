@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import ContactUsModel
+
+
+@admin.register(ContactUsModel)
+class ArticleAdmin(admin.ModelAdmin):
+    pass
