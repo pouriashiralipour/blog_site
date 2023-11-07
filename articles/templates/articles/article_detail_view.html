@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 {% load static %}
+{% load comments_tag_filter %}
 
 {% block title %}
     {{ article.title }}
@@ -139,7 +140,7 @@
 
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">نظر ({{ article.comments.all|length }})</h3>
+                        <h3 class="section-title">نظر ({{ article.comments.all|only_active_comments|length }})</h3>
                         <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
                     </div>
                     <!-- post comments -->
@@ -147,7 +148,7 @@
 
                         <ul class="comments">
                             <!-- comment item -->
-                            {% for comment in article.comments.all %}
+                            {% for comment in article.comments.all|only_active_comments %}
                                 <li class="comment rounded">
                                     <div class="thumb">
                                         <img src="{% static "article/images/other/comment-1.png" %}"
