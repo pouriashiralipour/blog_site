@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext, gettext_lazy as _
 
-from .models import Article, Comments
+from .models import Article, Comments, Category
 from .forms import CommentForm
 
 
@@ -38,3 +38,9 @@ class CommentsCreateView(SuccessMessageMixin, generic.CreateView):
         obj.article = article
 
         return super().form_valid(form)
+
+
+class CategoryListView(generic.ListView):
+    template_name = 'articles/category.html'
+    model = Category
+    context_object_name = 'category'

@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+
+{% block title %}
+    دسته بندی
+{% endblock %}
+
+{% block content %}
+	{% for cat in category %}
+		<h5>{{ cat.title }}</h5>
+	{% endfor %}
+
+{% endblock %}
