@@ -75,6 +75,23 @@ class Article(models.Model):
         super().save(*args, **kwargs)
 
 
+class Comments(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments',
+                             verbose_name=_('user'))
+    name = models.CharField(max_length=200, verbose_name=_('name'), related_name='comments')
+    email = models.EmailField(verbose_name=_('email'))
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name=_('article'))
+    text = models.TextField(verbose_name=_('text'))
+    is_active = models.BooleanField(default=True, verbose_name=_('is_active'))
+    datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('datetime_created'))
+    datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
+
+    class Meta:
+        verbose_name = _('comment')
+        verbose_name_plural = _('comments')
+        ordering = ['-datetime_created']
+
+
 def slugify_instance_title(instance, save=False, new_slug=None):
     if new_slug is not None:
         slug = new_slug
