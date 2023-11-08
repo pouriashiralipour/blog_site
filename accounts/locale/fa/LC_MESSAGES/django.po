@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 11:37+0330\n"
+"POT-Creation-Date: 2023-11-08 22:10+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,5 +23,13 @@ msgid "accounts"
 msgstr "حساب های کاربری"
 
 #: .\models.py:8
+msgid "full_name"
+msgstr "نام و نام خانوداگی"
+
+#: .\models.py:9
 msgid "age"
 msgstr "سن"
+
+#: .\models.py:10
+msgid "avatar"
+msgstr "آواتار"
