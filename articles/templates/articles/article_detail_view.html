@@ -1,7 +1,6 @@
 {% extends '_base.html' %}
 {% load static %}
 {% load comments_tag_filter %}
-{% load persian_month_translation %}
 {% load persian_number_translate %}
 {% load jalali_tags %}
 
@@ -49,19 +48,29 @@
                         </div>
                         <!-- post content -->
                         <div class="post-content clearfix">
-                            <p>{{ article.short_description }}</p>
-{#                            <p>{{ article.description_1 }}</p>#}
-                            <figure class="figure">
-                                <img src="{{ article.image_1.url }}"
-                                     class="figure-img img-fluid rounded" alt="...">
-                                <figcaption class="figure-caption text-center"></figcaption>
-                            </figure>
+                            {% if article.short_description %}
+                                <p>{{ article.short_description }}</p>
+                            {% endif %}
+                            {#                            <p>{{ article.description_1 }}</p>#}
+                            {% if article.image_1 %}
+                                <figure class="figure">
+                                    <img src="{{ article.image_1.url }}"
+                                         class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption text-center"></figcaption>
+                                </figure>
+                            {% endif %}
 
-                            {{ article.description_1|safe }}
-                            {{ article.description_2|safe }}
+                            {% if article.description_1 %}
+                                <p>{{ article.description_1|safe }}</p>
+                            {% endif %}
+                            {% if article.description_2 %}
+                                <p>{{ article.description_2|safe }}</p>
+                            {% endif %}
 
-                            <img src="{{ article.image_2.url }}" class="rounded alignleft"
-                                 alt="...">
+                            {% if article.image_2 %}
+                                <img src="{{ article.image_2.url }}" class="rounded alignleft"
+                                     alt="...">
+                            {% endif %}
                         </div>
                         <!-- post bottom section -->
                         <div class="post-bottom">
@@ -108,34 +117,36 @@
                     <div class="spacer" data-height="50"></div>
 
                     <!-- section header -->
-                    <div class="section-header">
-                        <h3 class="section-title">نظر ({{ article.comments.all|only_active_comments|length }})</h3>
-                        <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
-                    </div>
-                    <!-- post comments -->
-                    <div class="comments bordered padding-30 rounded">
+                    {% if article.comments.all %}
+                        <div class="section-header">
+                            <h3 class="section-title">نظر ({{ article.comments.all|only_active_comments|length }})</h3>
+                            <img src="{% static 'article/images/wave.svg' %}" class="wave" alt="wave"/>
+                        </div>
+                        <!-- post comments -->
+                        <div class="comments bordered padding-30 rounded">
 
-                        <ul class="comments">
-                            <!-- comment item -->
-                            {% for comment in article.comments.all|only_active_comments %}
-                                <li class="comment rounded">
-                                    <div class="thumb">
-                                        <img src="{% static "article/images/other/comment-1.png" %}"
-                                             alt="{{ comment.name }}"/>
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">{{ comment.name }}</a></h4>
-                                        <span class="date">{{ comment.jalali_publish}}</span>
-                                        <p>{{ comment.text }}</p>
-                                        {#                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>#}
-                                    </div>
-                                </li>
-                            {% endfor %}
+                            <ul class="comments">
+                                <!-- comment item -->
+                                {% for comment in article.comments.all|only_active_comments %}
+                                    <li class="comment rounded">
+                                        <div class="thumb">
+                                            <img src="{% static "article/images/other/comment-1.png" %}"
+                                                 alt="{{ comment.name }}"/>
+                                        </div>
+                                        <div class="details">
+                                            <h4 class="name"><a href="#">{{ comment.name }}</a></h4>
+                                            <span class="date">{{ comment.jalali_publish }}</span>
+                                            <p>{{ comment.text }}</p>
+                                            {#                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>#}
+                                        </div>
+                                    </li>
+                                {% endfor %}
 
-                            <!-- comment item -->
+                                <!-- comment item -->
 
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
+                    {% endif %}
 
                     <div class="spacer" data-height="50"></div>
 
@@ -227,7 +238,8 @@
                                         <span class="number">1</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-1.jpg"%}" alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-1.jpg" %}"
+                                                     alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -245,7 +257,8 @@
                                         <span class="number">2</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-2.jpg"%}" alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-2.jpg" %}"
+                                                     alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -263,7 +276,8 @@
                                         <span class="number">3</span>
                                         <a href="blog-single.html">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-3.jpg"%}" alt="post-title"/>
+                                                <img src="{% static "article/images/posts/tabs-3.jpg" %}"
+                                                     alt="post-title"/>
                                             </div>
                                         </a>
                                     </div>
@@ -317,7 +331,8 @@
                                             <a href="category.html" class="category-badge position-absolute">چگونه</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}" alt="post-title"/>
+                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}"
+                                                         alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>
@@ -335,7 +350,8 @@
                                                class="category-badge position-absolute">پرطرفدار</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="{% static "article/images/widgets/widget-carousel-2.jpg" %}" alt="post-title"/>
+                                                    <img src="{% static "article/images/widgets/widget-carousel-2.jpg" %}"
+                                                         alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>
@@ -352,7 +368,8 @@
                                             <a href="category.html" class="category-badge position-absolute">چگونه</a>
                                             <a href="blog-single.html">
                                                 <div class="inner">
-                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}" alt="post-title"/>
+                                                    <img src="{% static "article/images/widgets/widget-carousel-1.jpg" %}"
+                                                         alt="post-title"/>
                                                 </div>
                                             </a>
                                         </div>

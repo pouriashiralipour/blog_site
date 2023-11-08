@@ -48,15 +48,15 @@
                                     </div>
                                     <div class="details">
                                         <ul class="meta list-inline mb-0">
-                                            <li class="list-inline-item"><a href="#"><img
+                                            <li class="list-inline-item"><a href=""><img
                                                     src="{% static 'article/images/other/author-sm.png' %}"
                                                     class="author" alt="author"/>{{ article.author }}</a>
                                             </li>
-                                            <li class="list-inline-item">{{ article.publish }}</li>
+                                            <li class="list-inline-item">{{ article.jalali_publish }}</li>
                                         </ul>
                                         <h5 class="post-title mb-3 mt-3"><a
-                                                href="blog-single.html">{{ article.title }}</a></h5>
-                                        <p class="excerpt mb-0">{{ article.description_1|safe|linebreaks|truncatewords_html:15 }}</p>
+                                                href="{{ article.get_absolute_url }}">{{ article.title }}</a></h5>
+                                        <p class="excerpt mb-0">{{ article.short_description|safe|linebreaks|truncatewords_html:15 }}</p>
                                     </div>
                                     <div class="post-bottom clearfix d-flex align-items-center">
                                         <div class="social-share me-auto">
@@ -70,7 +70,7 @@
                                                         class="fab fa-linkedin-in"></i></a>
                                                 </li>
                                                 <li class="list-inline-item"><a href="#"><i
-                                                        class="fab fa-pinterest"></i></a></li>
+                                                        class="fab fa-instagram"></i></a></li>
                                                 <li class="list-inline-item"><a href="#"><i
                                                         class="fab fa-telegram-plane"></i></a></li>
                                                 <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a>
@@ -78,7 +78,7 @@
                                             </ul>
                                         </div>
                                         <div class="more-button float-end">
-                                            <a href="blog-single.html"><span class="icon-options"></span></a>
+                                            <a href="{{ article.get_absolute_url }}"><span class="icon-options"></span></a>
                                         </div>
                                     </div>
                                 </div>
