@@ -41,6 +41,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=500, verbose_name=_('slug'), unique=True, allow_unicode=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
     category = models.ManyToManyField(Category, verbose_name=_('category'), related_name='article')
+    short_description = models.TextField(verbose_name=_('short_description'), null=True, blank=True)
     description_1 = RichTextField(verbose_name=_('description_1'), blank=True)
     description_2 = RichTextField(verbose_name=_('description_2'), blank=True, null=True)
     thumbnail = models.ImageField(upload_to='thumbnail/', verbose_name=_('thumbnail'))
