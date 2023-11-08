@@ -10,7 +10,7 @@ from articles.models import Article, Category
 def home_page_view(request):
     # offer_article = Article.objects.filter(status='p', offer_article=True).order_by('-publish')[1:]
     # last_offer_article = Article.objects.filter(status='p', offer_article=True).order_by('-publish')[:1]
-    hottest_article = Article.objects.filter(status='p', hottest_article=True).order_by('-publish')
+    hottest_article = Article.objects.filter(status='p', hottest_article=True).order_by('-publish')[:1]
     articles = Article.objects.filter(status='p').order_by('-publish')
     category = Category.objects.filter(active=True).order_by('-datetime_created')
 

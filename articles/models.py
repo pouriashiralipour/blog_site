@@ -88,7 +88,7 @@ class Comments(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name=_('article'))
     text = models.TextField(verbose_name=_('text'))
     is_active = models.BooleanField(default=True, verbose_name=_('is_active'))
-    datetime_created = models.DateTimeField(auto_now_add=True, verbose_name=_('datetime_created'))
+    datetime_created = models.DateTimeField(default=timezone.now, verbose_name=_('datetime_created'))
     datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
 
     class Meta:
