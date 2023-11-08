@@ -40,7 +40,7 @@
                                         src="{% static 'article/images/other/author-sm.png' %}"
                                         class="author" alt="author"/>{{ article.author }}</a></li>
                                 <li class="list-inline-item"><a href="#">پرطرفدار</a></li>
-                                <li class="list-inline-item">{{ article.publish }}</li>
+                                <li class="list-inline-item">{{ article.jalali_publish }}</li>
                             </ul>
                         </div>
                         <!-- featured image -->
@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="details">
                                         <h4 class="name"><a href="#">{{ comment.name }}</a></h4>
-                                        <span class="date">{{ comment.datetime_created|to_jalali:'%d %B %Y ساعت %H:%M'|translate_month }}</span>
+                                        <span class="date">{{ comment.jalali_publish}}</span>
                                         <p>{{ comment.text }}</p>
                                         {#                                    <a href="#" class="btn btn-default btn-sm">پاسخ</a>#}
                                     </div>

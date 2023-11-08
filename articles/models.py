@@ -11,6 +11,8 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from ckeditor.fields import RichTextField
 
+from jalali.utils import django_jalali_converter
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200, verbose_name=_('title'))
@@ -26,6 +28,11 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('articles:category_list_view', args=[self.slug])
+
+    def jalali_publish(self):
+        return django_jalali_converter(self.datetime_created)
+
+    jalali_publish.short_description = _('publish')
 
     def __str__(self):
         return self.title
@@ -68,6 +75,11 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('articles:details_view', args=[self.slug])
 
+    def jalali_publish(self):
+        return django_jalali_converter(self.publish)
+
+    jalali_publish.short_description = _('publish')
+
     def cover_img(self):
         try:
             return format_html("<img width=60 src='{}'>".format(self.thumbnail.url))
@@ -99,6 +111,9 @@ class Comments(models.Model):
     def get_absolute_url(self):
         return reverse('articles:details_view', args=[self.article.slug])
 
+    def jalali_publish(self):
+        return django_jalali_converter(self.datetime_created)
+    jalali_publish.short_description = _('publish')
 
 def slugify_instance_title(instance, save=False, new_slug=None):
     if new_slug is not None:
