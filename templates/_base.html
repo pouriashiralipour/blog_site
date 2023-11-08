@@ -82,8 +82,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="">دسته بندی</a>
                             <ul class="dropdown-menu">
-                                {% for cat in category.all%}
-                                    <li><a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
+                                {% for cat in category.all %}
+                                    <li><a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
+                                    </li>
                                 {% endfor %}
 
 
@@ -235,13 +236,14 @@
             </li>
 
             <li>
-                <a href="#">دسته بندی</a>
-                {#                <ul class="submenu">#}
-                {#                    <li><a href="category.html">دسته بندی</a></li>#}
-                {#                    <li><a href="blog-single.html">جزییات وبلاگ 1</a></li>#}
-                {#                    <li><a href="blog-single-2.html">جزییات وبلاگ 2</a></li>#}
-                {##}
-                {#                </ul>#}
+                <a href="">دسته بندی</a>
+                <ul class="submenu">
+                    {% for cat in category.all %}
+                        <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
+                    {% endfor %}
+
+
+                </ul>
             </li>
             <li><a href="{% url 'pages:contact_us' %}">تماس با ما</a></li>
             <li><a href="{% url 'pages:about_us' %}">درباره ما</a></li>

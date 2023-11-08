@@ -143,77 +143,33 @@
                             <!-- اخیر مطالب -->
                             <div aria-labelledby="اخیر-tab" class="tab-pane fade" id="اخیر" role="tabpanel">
                                 <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-2.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
+                                {% for article in articles %}
+                                    <div class="post post-list-sm circle">
+                                        <div class="thumb circle">
+                                            <a href="{{ article.get_absolute_url }}">
+                                                <div class="inner">
+                                                    <img style="vertical-align: middle;
+                                                    background-size: cover;
+
+background-position: top center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;" src="{{ article.thumbnail.url }}"
+                                                         alt="post-title"/>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0"><a
+                                                    href="{{ article.get_absolute_url }}">{{ article.title }}</a></h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">{{ article.jalali_publish }}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">یک روش فوق العاده آسان که
-                                            برای همه کار می کند</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                {% endfor %}
+
                                 <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-1.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">3 راه آسان برای سریعتر
-                                            کردن آیفون</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-4.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">15 راه ناشنیده برای
-                                            دستیابی به واکر بزرگ</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm circle">
-                                    <div class="thumb circle">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/tabs-3.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">10 راه برای شروع فوری
-                                            فروش مبلمان</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -242,107 +198,62 @@
 
                     <div class="padding-30 rounded bordered">
                         <div class="row gy-5">
-                            <div class="col-sm-6">
-                                <!-- post -->
-                                <div class="post">
-                                    <div class="thumb rounded">
-                                        <a href="category.html" class="category-badge position-absolute">سبک زندگی</a>
-                                        <span class="post-format">
+                            {% for article in last_offer_article %}
+                                <div class="col-sm-6">
+                                    <!-- post -->
+                                    <div class="post">
+                                        <div class="thumb rounded">
+                                            {% for cat in article.category.all %}
+                                                <a href="{{ cat.get_absolute_url }}"
+                                                   class="category-badge position-absolute">{{ cat.title }}</a>
+                                            {% endfor %}
+
+                                            <span class="post-format">
 											<i class="icon-picture"></i>
 										</span>
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/editor-lg.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
+                                            <a href="{{ article.get_absolute_url }}">
+                                                <div class="inner">
+                                                    <img src="{{ article.thumbnail.url }}"
+                                                         alt="post-title"/>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <ul class="meta list-inline mt-4 mb-0">
+                                            <li class="list-inline-item"><a href="#"><img
+                                                    src="{% static "article/images/other/author-sm.png" %}"
+                                                    class="author" alt="author"/>{{ article.author }}</a>
+                                            </li>
+                                            <li class="list-inline-item">{{ article.jalali_publish }}</li>
+                                        </ul>
+                                        <h5 class="post-title mb-3 mt-3"><a
+                                                href="blog-single.html">{{ article.title }}</a></h5>
+                                        <p class="excerpt mb-0">{{ article.short_description|truncatewords_html:15 }}</p>
                                     </div>
-                                    <ul class="meta list-inline mt-4 mb-0">
-                                        <li class="list-inline-item"><a href="#"><img
-                                                src="{% static "article/images/other/author-sm.png" %}"
-                                                class="author" alt="author"/>کاتن</a>
-                                        </li>
-                                        <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                    </ul>
-                                    <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">15 راه ناشنیده برای
-                                        دستیابی به واکر بزرگ</a></h5>
-                                    <p class="excerpt mb-0">آرامشی شگفت انگیز همه جانم را فرا گرفته است، مثل این صبح های
-                                        شیرین بهاری که از آن لذت می برم</p>
                                 </div>
-                            </div>
+                            {% endfor %}
+
                             <div class="col-sm-6">
                                 <!-- post -->
-                                <div class="post post-list-sm square">
-                                    <div class="thumb rounded">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/editor-sm-1.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
+                                {% for article in offer_article %}
+                                    <div class="post post-list-sm square">
+                                        <div class="thumb rounded">
+                                            <a href="{{ article.get_absolute_url }}">
+                                                <div class="inner">
+                                                    <img src="{{ article.thumbnail.url }}"
+                                                         alt="post-title"/>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="details clearfix">
+                                            <h6 class="post-title my-0"><a
+                                                    href="{{ article.get_absolute_url }}">{{ article.title }}</a></h6>
+                                            <ul class="meta list-inline mt-1 mb-0">
+                                                <li class="list-inline-item">{{ article.jalali_publish }}</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">3 راه آسان برای سریعتر
-                                            کردن آیفون</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm square">
-                                    <div class="thumb rounded">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/editor-sm-2.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">یک روش فوق العاده آسان که
-                                            برای همه کار می کند</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm square">
-                                    <div class="thumb rounded">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/editor-sm-3.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">10 راه برای شروع فوری
-                                            فروش مبلمان</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- post -->
-                                <div class="post post-list-sm square">
-                                    <div class="thumb rounded">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/editor-sm-4.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details clearfix">
-                                        <h6 class="post-title my-0"><a href="blog-single.html">15 راه ناشنیده برای
-                                            دستیابی به واکر بزرگ</a></h6>
-                                        <ul class="meta list-inline mt-1 mb-0">
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>
@@ -584,16 +495,17 @@
 
                         <div class="row">
 
-                            <div class="col-md-12 col-sm-6">
+                            {% for article in articles %}
+                            	<div class="col-md-12 col-sm-6">
                                 <!-- post -->
                                 <div class="post post-list clearfix">
                                     <div class="thumb rounded">
 										<span class="post-format-sm">
 											<i class="icon-picture"></i>
 										</span>
-                                        <a href="blog-single.html">
+                                        <a href="{{ article.get_absolute_url }}">
                                             <div class="inner">
-                                                <img src="{% static "article/images/posts/latest-sm-1.jpg" %}"
+                                                <img src="{{ article.thumbnail.url }}"
                                                      alt="post-title"/>
                                             </div>
                                         </a>
@@ -603,14 +515,14 @@
                                             <li class="list-inline-item"><a href="#"><img
                                                     src="{% static "article/images/other/author-sm.png" %}"
                                                     class="author"
-                                                    alt="author"/>کاتن</a></li>
-                                            <li class="list-inline-item"><a href="#">پرطرفدار</a></li>
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
+                                                    alt="author"/>{{ article.author }}</a></li>
+                                            {% for cat in article.category.all %}
+                                            	<li class="list-inline-item"><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>
+                                            {% endfor %}
+                                            <li class="list-inline-item">{{ article.jalali_publish }}</li>
                                         </ul>
-                                        <h5 class="post-title"><a href="blog-single.html">60 کاری که باید فوراً در مورد
-                                            ساختمان انجام دهید</a></h5>
-                                        <p class="excerpt mb-0">آرامشی شگفت انگیز تمام روحم را گرفته است، مثل این صبح
-                                            های شیرین</p>
+                                        <h5 class="post-title"><a href="blog-single.html">{{ article.title }}</a></h5>
+                                        <p class="excerpt mb-0">{{ article.short_description|truncatewords_html:10 }}</p>
                                         <div class="post-bottom clearfix d-flex align-items-center">
                                             <div class="social-share me-auto">
                                                 <button class="toggle-button icon-share"></button>
@@ -636,162 +548,11 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
 
-                            <div class="col-md-12 col-sm-6">
-                                <!-- post -->
-                                <div class="post post-list clearfix">
-                                    <div class="thumb rounded">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/latest-sm-2.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details">
-                                        <ul class="meta list-inline mb-3">
-                                            <li class="list-inline-item"><a href="#"><img
-                                                    src="{% static "article/images/other/author-sm.png" %}"
-                                                    class="author"
-                                                    alt="author"/>کاتن</a></li>
-                                            <li class="list-inline-item"><a href="#">سبک زندگی</a></li>
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                        <h5 class="post-title"><a href="blog-single.html">با این 7 نکته بر هنر طبیعت
-                                            مسلط شوید</a></h5>
-                                        <p class="excerpt mb-0">آرامشی شگفت انگیز تمام روحم را گرفته است، مثل این صبح
-                                            های شیرین</p>
-                                        <div class="post-bottom clearfix d-flex align-items-center">
-                                            <div class="social-share me-auto">
-                                                <button class="toggle-button icon-share"></button>
-                                                <ul class="icons list-unstyled list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-facebook-f"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-twitter"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-linkedin-in"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-pinterest"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-telegram-plane"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="far fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="more-button float-end">
-                                                <a href="blog-single.html"><span class="icon-options"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-12 col-sm-6">
-                                <!-- post -->
-                                <div class="post post-list clearfix">
-                                    <div class="thumb rounded">
-										<span class="post-format-sm">
-											<i class="icon-camrecorder"></i>
-										</span>
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/latest-sm-3.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details">
-                                        <ul class="meta list-inline mb-3">
-                                            <li class="list-inline-item"><a href="#"><img
-                                                    src="{% static "article/images/other/author-sm.png" %}"
-                                                    class="author"
-                                                    alt="author"/>کاتن</a></li>
-                                            <li class="list-inline-item"><a href="#">مد روز</a></li>
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                        <h5 class="post-title"><a href="blog-single.html">حقایقی در مورد تجارت که به
-                                            موفقیت شما کمک می کند</a></h5>
-                                        <p class="excerpt mb-0">آرامشی شگفت انگیز تمام روحم را گرفته است، مثل این صبح
-                                            های شیرین</p>
-                                        <div class="post-bottom clearfix d-flex align-items-center">
-                                            <div class="social-share me-auto">
-                                                <button class="toggle-button icon-share"></button>
-                                                <ul class="icons list-unstyled list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-facebook-f"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-twitter"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-linkedin-in"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-pinterest"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-telegram-plane"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="far fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="more-button float-end">
-                                                <a href="blog-single.html"><span class="icon-options"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-12 col-sm-6">
-                                <!-- post -->
-                                <div class="post post-list clearfix">
-                                    <div class="thumb rounded">
-                                        <a href="blog-single.html">
-                                            <div class="inner">
-                                                <img src="{% static "article/images/posts/latest-sm-4.jpg" %}"
-                                                     alt="post-title"/>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details">
-                                        <ul class="meta list-inline mb-3">
-                                            <li class="list-inline-item"><a href="#"><img
-                                                    src="{% static "article/images/other/author-sm.png" %}"
-                                                    class="author"
-                                                    alt="author"/>کاتن</a></li>
-                                            <li class="list-inline-item"><a href="#">سیاست</a></li>
-                                            <li class="list-inline-item">30 اردیبهشت 1401</li>
-                                        </ul>
-                                        <h5 class="post-title"><a href="blog-single.html">نور شما نزدیک به توقف شدن
-                                            است:</a></h5>
-                                        <p class="excerpt mb-0">آرامشی شگفت انگیز تمام روحم را گرفته است، مثل این صبح
-                                            های شیرین</p>
-                                        <div class="post-bottom clearfix d-flex align-items-center">
-                                            <div class="social-share me-auto">
-                                                <button class="toggle-button icon-share"></button>
-                                                <ul class="icons list-unstyled list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-facebook-f"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-twitter"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-linkedin-in"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-pinterest"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-telegram-plane"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"><i
-                                                            class="far fa-envelope"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="more-button float-end">
-                                                <a href="blog-single.html"><span class="icon-options"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div
-                        >
+                        </div>
                         <!-- بارگذاری بیشتر button -->
                         <div class="text-center">
                             <button class="btn btn-simple">بارگذاری بیشتر</button>
