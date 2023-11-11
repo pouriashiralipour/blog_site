@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # Custom context processors
                 'articles.context_processors.categories',
+                'articles.context_processors.tags',
             ],
         },
     },
