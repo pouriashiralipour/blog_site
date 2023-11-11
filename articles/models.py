@@ -38,6 +38,30 @@ class Category(models.Model):
         return self.title
 
 
+class Tags(models.Model):
+    tag = models.CharField(max_length=200, verbose_name=_('title'))
+    slug = models.SlugField(max_length=200, verbose_name=_('slug'), unique=True, allow_unicode=True)
+    datetime_created = models.DateTimeField(default=timezone.now, verbose_name=_('datetime_created'), )
+    datetime_modified = models.DateTimeField(auto_now=True, verbose_name=_('datetime_modified'))
+    active = models.BooleanField(default=True, verbose_name=_('active'))
+
+    class Meta:
+        verbose_name = _('tag')
+        verbose_name_plural = _("tags")
+        ordering = ['datetime_created']
+
+    # def get_absolute_url(self):
+    #     return reverse('articles:category_list_view', args=[self.slug])
+
+    def jalali_publish(self):
+        return django_jalali_converter(self.datetime_created)
+
+    jalali_publish.short_description = _('publish')
+
+    def __str__(self):
+        return self.tag
+
+
 class Article(models.Model):
     STATUS_CHOICES = (
         ('d', _('Draft')),
@@ -48,6 +72,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=500, verbose_name=_('slug'), unique=True, allow_unicode=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('author'))
     category = models.ManyToManyField(Category, verbose_name=_('category'), related_name='article')
+    tags = models.ManyToManyField(Tags, verbose_name=_('tag'), related_name='article')
     short_description = models.TextField(verbose_name=_('short_description'), null=True, blank=True)
     description_1 = RichTextField(verbose_name=_('description_1'), blank=True)
     description_2 = RichTextField(verbose_name=_('description_2'), blank=True, null=True)
@@ -113,7 +138,9 @@ class Comments(models.Model):
 
     def jalali_publish(self):
         return django_jalali_converter(self.datetime_created)
+
     jalali_publish.short_description = _('publish')
+
 
 def slugify_instance_title(instance, save=False, new_slug=None):
     if new_slug is not None:
