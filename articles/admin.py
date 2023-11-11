@@ -2,7 +2,7 @@ from django.contrib import admin
 from jalali_date import datetime2jalali, date2jalali
 from jalali_date.admin import ModelAdminJalaliMixin, StackedInlineJalaliMixin, TabularInlineJalaliMixin
 
-from .models import Article, Category, Comments
+from .models import Article, Category, Comments, Tags
 
 
 @admin.register(Article)
@@ -31,10 +31,10 @@ class CommentAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     ordering = ['-datetime_created']
 
 
-@admin.register(Category)
+@admin.register(Tags)
 class TagsAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     list_display = ['tag', 'active', 'jalali_publish']
     list_filter = ('active',)
     search_fields = ('tag',)
-    prepopulated_fields = {'slug': ('title',)}
+    prepopulated_fields = {'slug': ('tag',)}
     ordering = ['-datetime_created']

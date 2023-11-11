@@ -9,6 +9,7 @@ urlpatterns = [
     path('comment/<int:article_id>', views.CommentsCreateView.as_view(), name='comment_view'),
     re_path(r'(?P<slug>[-\w]*)/$', views.ArticleDetailView.as_view(), name='details_view'),
     re_path(r'^category/(?P<slug>[-\w]*)/$', views.CategoryListView.as_view(), name='category_list_view'),
+    path('tags/<int:pk>', views.TagsDetailsView.as_view(), name='tag_list_view')
     # path('category/', views.CategoryListView.as_view(), name='category_list_view'),
 
 ]

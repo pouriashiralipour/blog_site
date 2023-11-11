@@ -296,12 +296,10 @@
                                 <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
-                                <a href="#" class="tag">#پرطرفدار</a>
-                                <a href="#" class="tag">#فیلم</a>
-                                <a href="#" class="tag">#ویژه</a>
-                                <a href="#" class="tag">#گالری</a>
-                                <a href="#" class="tag">#سلبریتی</a>
-                            </div>
+                                {% for tag in tag.all %}
+                                	<a href="{{ tag.get_absolute_url }}" class="tag">#{{ tag.tag }}</a>
+                                {% endfor %}
+
                         </div>
 
                     </div>

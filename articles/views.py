@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext, gettext_lazy as _
 
-from .models import Article, Comments, Category
+from .models import Article, Comments, Category, Tags
 from .forms import CommentForm
 
 
@@ -46,11 +46,17 @@ class CategoryListView(generic.DetailView):
     context_object_name = 'cat'
 
 
-def category_detail_view(request, slug):
-    category = get_object_or_404(Category, slug=slug)
-    articles = Article.objects.filter(status='p').order_by('-publish')
-    context = {
-        'category': category,
-        'articles': articles,
-    }
-    return render(request, 'articles/category.html', context)
+# def category_detail_view(request, slug):
+#     category = get_object_or_404(Category, slug=slug)
+#     articles = Article.objects.filter(status='p').order_by('-publish')
+#     context = {
+#         'category': category,
+#         'articles': articles,
+#     }
+#     return render(request, 'articles/category.html', context)
+
+
+class TagsDetailsView(generic.DetailView):
+    template_name = 'articles/tags.html'
+    model = Tags
+    context_object_name = 'ta'

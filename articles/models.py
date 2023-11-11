@@ -50,8 +50,8 @@ class Tags(models.Model):
         verbose_name_plural = _("tags")
         ordering = ['datetime_created']
 
-    # def get_absolute_url(self):
-    #     return reverse('articles:category_list_view', args=[self.slug])
+    def get_absolute_url(self):
+        return reverse('articles:tag_list_view', args=[self.id])
 
     def jalali_publish(self):
         return django_jalali_converter(self.datetime_created)

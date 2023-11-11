@@ -779,7 +779,10 @@ background-position: top center;
                                 <img src="{% static "article/images/wave.svg" %}" class="wave" alt="wave"/>
                             </div>
                             <div class="widget-content">
-                                <a href="#" class="tag">#پرطرفدار</a>
+                                {% for tag in tag %}
+                                	<a href="{{ tag.get_absolute_url }}" class="tag">#{{ tag.tag }}</a>
+                                {% endfor %}
+
                             </div>
                         </div>
 
