@@ -14,8 +14,6 @@ class ArticleAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     ordering = ['-status', '-publish']
 
 
-
-
 @admin.register(Category)
 class ArticleCategoryAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     list_display = ['title', 'active', 'jalali_publish']
@@ -26,8 +24,17 @@ class ArticleCategoryAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 
 
 @admin.register(Comments)
-class ArticleCommentAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+class CommentAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     list_display = ['name', 'is_active', 'text', 'jalali_publish']
     list_filter = ('is_active',)
     search_fields = ('text',)
+    ordering = ['-datetime_created']
+
+
+@admin.register(Category)
+class TagsAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+    list_display = ['tag', 'active', 'jalali_publish']
+    list_filter = ('active',)
+    search_fields = ('tag',)
+    prepopulated_fields = {'slug': ('title',)}
     ordering = ['-datetime_created']
