@@ -14,11 +14,11 @@ class CustomUserAdmin(ModelAdminJalaliMixin, UserAdmin):
     model = CustomUser
     list_display = ['username', 'email', 'age', 'is_staff']
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('age', 'avatar', 'full_name',)}),
+        (None, {'fields': ('age', 'avatar', 'full_name', 'bio', 'description')}),
     )
 
     add_fieldsets = UserAdmin.add_fieldsets + (
-        (None, {'fields': ('age', 'avatar', 'full_name',)}),
+        (None, {'fields': ('age', 'avatar', 'full_name', 'bio', 'description')}),
     )
 
 
