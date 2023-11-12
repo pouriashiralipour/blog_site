@@ -24,6 +24,37 @@ class ArticleDetailView(generic.DetailView):
         return context
 
 
+def article_detail_view(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    form = CommentForm()
+
+    msg = False
+
+    if request.user.is_authenticated:
+        user = request.user
+    if article.likes.filter(id=user.id).exists():
+        msg = True
+
+
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            user = request.user
+
+            if article.likes.filter(id=user.id).exists():
+                article.likes.remove(user)
+                msg = False
+            else:
+                article.likes.add(user)
+                msg = True
+
+    context = {
+        'article': article,
+        'form': form,
+        'msg': msg,
+    }
+    return render(request, 'articles/article_detail_view.html', context)
+
+
 class CommentsCreateView(SuccessMessageMixin, generic.CreateView):
     model = Comments
     form_class = CommentForm
