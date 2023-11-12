@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 17:41+0330\n"
+"POT-Creation-Date: 2023-11-12 10:06+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\apps.py:8 .\models.py:94
+#: .\apps.py:8 .\models.py:95
 msgid "articles"
 msgstr "مطالب"
 
@@ -30,11 +30,11 @@ msgstr "عنوان"
 msgid "slug"
 msgstr "آدرس"
 
-#: .\models.py:20 .\models.py:44 .\models.py:89 .\models.py:128
+#: .\models.py:20 .\models.py:44 .\models.py:90 .\models.py:129
 msgid "datetime_created"
 msgstr "تاریخ ساخت"
 
-#: .\models.py:21 .\models.py:45 .\models.py:90 .\models.py:129
+#: .\models.py:21 .\models.py:45 .\models.py:91 .\models.py:130
 msgid "datetime_modified"
 msgstr "تاریخ ویرایش"
 
@@ -50,8 +50,8 @@ msgstr "دسته بندی"
 msgid "categories"
 msgstr "دسته بندی ها"
 
-#: .\models.py:35 .\models.py:59 .\models.py:86 .\models.py:106
-#: .\models.py:142
+#: .\models.py:35 .\models.py:59 .\models.py:87 .\models.py:107
+#: .\models.py:143
 msgid "publish"
 msgstr "تاریخ انتشار"
 
@@ -76,66 +76,70 @@ msgid "author"
 msgstr "نویسنده"
 
 #: .\models.py:76
+msgid "likes"
+msgstr "لایک ها"
+
+#: .\models.py:77
 msgid "short_description"
 msgstr "توضیحات کوتاه"
 
-#: .\models.py:77
+#: .\models.py:78
 msgid "description_1"
 msgstr "توضیحات اول"
 
-#: .\models.py:78
+#: .\models.py:79
 msgid "description_2"
 msgstr "توضیحات دوم"
 
-#: .\models.py:79 .\models.py:114
+#: .\models.py:80 .\models.py:115
 msgid "thumbnail"
 msgstr "کاور"
 
-#: .\models.py:80
+#: .\models.py:81
 msgid "image_1"
 msgstr "عکس اول"
 
-#: .\models.py:81
+#: .\models.py:82
 msgid "image_2"
 msgstr "عکس دوم"
 
-#: .\models.py:85
+#: .\models.py:86
 msgid "status"
 msgstr "وضعیت"
 
-#: .\models.py:87
+#: .\models.py:88
 msgid "offer_article"
 msgstr "مطلب پیشنهادی"
 
-#: .\models.py:88
+#: .\models.py:89
 msgid "hottest_article"
 msgstr "داغ ترین مطلب"
 
-#: .\models.py:93 .\models.py:125
+#: .\models.py:94 .\models.py:126
 msgid "article"
 msgstr "مطلب"
 
-#: .\models.py:123
+#: .\models.py:124
 msgid "name"
 msgstr "نام"
 
-#: .\models.py:124
+#: .\models.py:125
 msgid "email"
 msgstr "ایمیل"
 
-#: .\models.py:126
+#: .\models.py:127
 msgid "text"
 msgstr "متن"
 
-#: .\models.py:127
+#: .\models.py:128
 msgid "is_active"
 msgstr "فعال"
 
-#: .\models.py:132
+#: .\models.py:133
 msgid "comment"
 msgstr "کامنت"
 
-#: .\models.py:133
+#: .\models.py:134
 msgid "comments"
 msgstr "کامنت ها"
 
